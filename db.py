@@ -1,5 +1,5 @@
 # Database setup
-import config
+import countries
 import datetime
 from peewee import SqliteDatabase, Model, CharField, \
     BlobField, DateTimeField, ForeignKeyField
@@ -51,7 +51,7 @@ def create_tables():
     db.create_tables([Country,
                       Search,
                       Video])
-    for country in config.COUNTRIES:
+    for country in countries.COUNTRIES:
         db.Country(name=country)
 
 

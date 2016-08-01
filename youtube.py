@@ -1,4 +1,5 @@
 import config
+import countries
 import time
 from apiclient.discovery import build
 from apiclient.errors import HttpError
@@ -7,7 +8,7 @@ from oauth2client.tools import argparser
 YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 DEVELOPER_KEY = config.API_KEY
-COUNTRIES = config.SHORT_COUNTRIES
+COUNTRIES = countries.COUNTRIES
 PREFIX = "https://www.youtube.com/watch?v="
 
 
