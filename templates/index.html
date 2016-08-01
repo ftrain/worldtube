@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>World of Water Parks</title>
+    <style>
+      body {
+      margin:4em;
+      font-family:Helvetica;      
+      }
+      table {
+      border-collapse:collapse;
+      }
+      td a {
+      text-decoration:none;color:#F00;
+      display:block;
+      max-width:120px;
+      }
+      
+      th, td {
+      margin:0;
+      padding:1em 0 1em 0;
+      font-family:Helvetica;
+      font-size:9pt;
+      vertical-align:top;
+      width:140px;
+      text-align:center;
+      border-top:1px solid #ccc;
+      }
+      th {text-align:right;padding-right:2em;}
+    </style>
+  </head>
+  <body>
+    <h1>World of Water Parks &amp;c.</h1>
+    <h2>&ldquo;{{search_term}}&rdquo;</h2>
+    <table>
+    {% for country_video in results %}
+    <tr>
+      <th class="country">{{country_video.country}}</th>
+      {% for video in country_video.results['items'] %}
+      <td class="video"><a href="https://www.youtube.com/watch?v={{video.id.videoId}}"><img src="{{video.snippet.thumbnails.default.url}}" title="{{video.snippet.title}}"/></a>
+	<br/><a href="https://www.youtube.com/watch?v={{video.id.videoId}}">{{video.snippet.title}}</a>
+      </td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+    </table>
+  </body>
+</html>
