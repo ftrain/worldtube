@@ -9,7 +9,15 @@ YOUTUBE_API_SERVICE_NAME = "youtube"
 YOUTUBE_API_VERSION = "v3"
 DEVELOPER_KEY = config.API_KEY
 COUNTRIES = countries.COUNTRIES
+COUNTRIES_PER_PAGE = 20
 PREFIX = "https://www.youtube.com/watch?v="
+
+country_pages = [
+                    COUNTRIES[start_index:start_index + COUNTRIES_PER_PAGE]
+                    for start_index
+                    in range(0, len(COUNTRIES), COUNTRIES_PER_PAGE)
+                ]
+num_pages = len(country_pages)
 
 
 def search(query, max_results=5):
@@ -26,9 +34,11 @@ def search(query, max_results=5):
     ).execute()
 
 
-def search_countries(query):
+def search_countries(query, page_num):
+    page = country_pages[page_num] if page_num < num_pages \
+                else country_pages[-1]
     results = []
-    for country in COUNTRIES[0:20]:
+    for country in page:
         youtube_query = "{} {}".format(query, country)
         results.append({'country': country,
                         'query': youtube_query,
