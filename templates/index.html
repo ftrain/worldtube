@@ -4,7 +4,7 @@
     <style>
       body {
       margin:4em;
-      font-family:Helvetica;      
+      font-family:Helvetica;
       }
       table {
       border-collapse:collapse;
@@ -14,7 +14,7 @@
       display:block;
       max-width:120px;
       }
-      
+
       th, td {
       margin:0;
       padding:1em 0 1em 0;
@@ -30,6 +30,10 @@
   </head>
   <body>
     <h1>World of Water Parks &amp;c.</h1>
+    <form action="/">
+        <input type="text" name="q" placeholder="Search for something">
+    </form>
+    <hr>
     <h2>&ldquo;{{search_term}}&rdquo;</h2>
     <table>
     {% for country_video in results %}
