@@ -12,7 +12,7 @@ COUNTRIES = countries.COUNTRIES
 PREFIX = "https://www.youtube.com/watch?v="
 
 
-def youtube_search(query, max_results=5):
+def search(query, max_results=5):
     youtube = build(YOUTUBE_API_SERVICE_NAME,
                     YOUTUBE_API_VERSION,
                     developerKey=DEVELOPER_KEY)
@@ -25,11 +25,12 @@ def youtube_search(query, max_results=5):
         maxResults=max_results,
     ).execute()
 
-def youtube_search_countries(query):
+
+def search_countries(query):
     results = []
-    for country in COUNTRIES:
+    for country in COUNTRIES[0:20]:
         youtube_query = "{} {}".format(query, country)
         results.append({'country': country,
                         'query': youtube_query,
-                        'results': youtube_search(youtube_query)})
+                        'results': search(youtube_query)})
     return results
