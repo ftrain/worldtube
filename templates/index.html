@@ -4,7 +4,7 @@
     <style>
       body {
       margin:4em;
-      font-family:Helvetica;      
+      font-family:Helvetica;
       }
       table {
       border-collapse:collapse;
@@ -14,7 +14,7 @@
       display:block;
       max-width:120px;
       }
-      
+
       th, td {
       margin:0;
       padding:1em 0 1em 0;
@@ -30,7 +30,18 @@
   </head>
   <body>
     <h1>World of Water Parks &amp;c.</h1>
-    <h2>&ldquo;{{search_term}}&rdquo;</h2>
+    <form action="/">
+        <input type="text" name="q" placeholder="Search for something">
+    </form>
+    <hr>
+    <h2>
+        &ldquo;{{search_term}}&rdquo; — Page {{current_page_num}}
+        [
+        {% for page_num in range(1, num_pages + 1) %}
+            <a href="/?q={{request.args.get('q') or ''}}&amp;p={{page_num}}">{{page_num}}</a>
+        {% endfor %}
+        ]
+    </h2>
     <table>
     {% for country_video in results %}
     <tr>
