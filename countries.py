@@ -1,3 +1,6 @@
+import pycountry
+
+
 SHORT_COUNTRIES = [
     "Afghanistan",
     "Albania",
@@ -249,3 +252,30 @@ COUNTRIES = [
     "Zambia",
     "Zimbabwe"
 ]
+
+# Mapping from country names to ISO-3166 alpha-2 region codes
+# Generated using the ``pycountry`` package with manual fallbacks for
+# names that do not have direct matches.
+COUNTRY_CODES = {}
+for _name in COUNTRIES:
+    try:
+        COUNTRY_CODES[_name] = pycountry.countries.lookup(_name).alpha_2
+    except LookupError:
+        pass
+
+COUNTRY_CODES.update({
+    "Cape Verde": "CV",
+    "Cote D'ivoire": "CI",
+    "East Timor": "TL",
+    "Kazakstan": "KZ",
+    "Kosovo": "XK",
+    "Libyan Arab Jamahiriya": "LY",
+    "Macau": "MO",
+    "Macedonia, The Former Yugoslav Republic Of": "MK",
+    "Netherlands Antilles": "AN",
+    "Palestinian Territory, Occupied": "PS",
+    "Reunion": "RE",
+    "Saint Helena": "SH",
+    "Swaziland": "SZ",
+    "Turkey": "TR",
+})

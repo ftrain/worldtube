@@ -14,3 +14,4 @@ simplejson==3.8.2
 six==1.10.0
 uritemplate==0.6
 Werkzeug==0.11.10
+pycountry
